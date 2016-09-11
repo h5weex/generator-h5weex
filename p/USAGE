@@ -1,0 +1,8 @@
+Description:
+    Creates a new web page
+
+Example:
+    yo h5weex:p your-page-name
+
+    This will create:
+        src/p/your-page-name.we

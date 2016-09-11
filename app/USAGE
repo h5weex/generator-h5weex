@@ -1,0 +1,14 @@
+Description:
+    Creates a default web project
+
+Example:
+    yo h5weex
+
+    This will create:
+        index.html
+        webpack.config.js
+        gulpfile.js
+        package.json
+        changelog.md
+        README.md
+        src

@@ -1,0 +1,8 @@
+Description:
+    Creates a new component
+
+Example:
+    yo h5weex:c your-comp-name
+
+    This will create:
+        src/c/your-comp-name.we

@@ -1,0 +1,103 @@
+<template>
+    <div class="container" data-role="slider" onappear="appear" ondisappear="disappear">
+        <slider class="slider" interval="2000" auto-play="{{autoPlay}}">
+            <div repeat="{{itemList}}" class="image-wrap" onclick="goTargetUrl" url="{{url}}">
+                <image class="image" src="{{pic}}"></image>
+            </div>
+            <indicator class="indicator" if="{{shouldShowIndicator}}"></indicator>
+        </slider>
+    </div>
+</template>
+
+<style>
+    .container {
+        width: 750;
+        height: 375;
+        background-color: #ffffff;
+        margin-bottom: 28;
+    }
+    .slider{
+        width: 750;
+        height: 375;
+        background-color: #ffffff;
+    }
+    .image-wrap {
+        width: 750;
+        height: 375;
+    }
+    .image{
+        width: 750;
+        height: 375;
+    }
+    .indicator {
+        bottom: 18;
+        left: 0;
+        width: 750;
+        height: 20;
+        position: absolute;
+        itemColor: rgba(255,255,255, 0.4);
+        itemSelectedColor: #ff5000;
+        itemSize: 20;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+</style>
+
+<script>
+    module.exports = {
+        data: {
+            autoPlay: true,
+            shouldShowIndicator: true,
+            itemList: '${{itemList}}'
+        },
+        methods: {
+            appear: function (e) {
+                console.log('appear');
+                this.autoPlay = true;
+            },
+            disappear: function (e) {
+                console.log('disappear');
+                this.autoPlay = false;
+            },
+            goTargetUrl: function (e) {
+                var url = e.target.attr.url;
+                this.$openURL(url);
+            }
+        },
+        created: function (){
+            var vm = this;
+
+            if(window.location.href.indexOf('localhost')>-1){
+                this.itemList = defaultData.itemList;
+            }
+
+            if(vm.itemList) {
+                vm.shouldShowIndicator = vm.itemList.length != 1;
+            }
+
+            this.$on('sliderStop', function (e) {
+                vm.autoPlay = false;
+            });
+
+            this.$on('sliderStart', function (e) {
+                vm.autoPlay = true;
+            });
+        }
+    };
+</script>
+
+<script>
+var defaultData = {
+    itemList : [
+        {
+            url: 'http://www.taobao.com',
+            pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
+        },
+        {
+            url: 'http://www.taobao.com',
+            pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
+        }
+    ]
+};
+</script>
