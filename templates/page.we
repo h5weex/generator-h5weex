@@ -49,7 +49,16 @@
         data: {
             autoPlay: true,
             shouldShowIndicator: true,
-            itemList: '${{itemList}}'
+            itemList: [
+                {
+                    url: 'http://www.taobao.com',
+                    pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
+                },
+                {
+                    url: 'http://www.taobao.com',
+                    pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
+                }
+            ]
         },
         methods: {
             appear: function (e) {
@@ -61,16 +70,11 @@
                 this.autoPlay = false;
             },
             goTargetUrl: function (e) {
-                var url = e.target.attr.url;
-                this.$openURL(url);
+                require('@weex-module/event').openURL(e.target.attr.url);
             }
         },
         created: function (){
             var vm = this;
-
-            if(window.location.href.indexOf('localhost')>-1){
-                this.itemList = defaultData.itemList;
-            }
 
             if(vm.itemList) {
                 vm.shouldShowIndicator = vm.itemList.length != 1;
@@ -85,19 +89,4 @@
             });
         }
     };
-</script>
-
-<script>
-var defaultData = {
-    itemList : [
-        {
-            url: 'http://www.taobao.com',
-            pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
-        },
-        {
-            url: 'http://www.taobao.com',
-            pic: '//gw.alicdn.com/imgextra/i2/2202220535/TB2gJSssVXXXXaJXXXXXXXXXXXX_!!2202220535.jpg'
-        }
-    ]
-};
 </script>

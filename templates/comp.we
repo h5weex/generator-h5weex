@@ -40,25 +40,15 @@
 <script>
     module.exports = {
         data: {
-            title: '${{title}}',
-            url: '${{url}}'
+            title: '这是一个测试标题',
+            url: 'http://www.taobao.com'
         },
         methods: {
             goTargetUrl: function() {
-                this.$openURL(this.url);
+                require('@weex-module/event').openURL(this.url);
             }
         },
         created: function() {
-            if(window.location.href.indexOf('localhost')>-1){
-                this.title = defaultData.title;
-            }
         }
     };
-</script>
-
-<script>
-var defaultData = {
-    title: '这是一个测试标题',
-    url: 'http://www.taobao.com'
-};
 </script>
